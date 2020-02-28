@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Formik, Form, Field } from 'formik'
 import { TextField} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,8 +60,21 @@ const SearchForm = (props) => {
          label='Search Name'
          as={TextField}
          />
-         
-         <pre>{JSON.stringify(values, null, 2)}</pre>
+          {/* <FormControl className={classes.formControl}>
+            <Field as={InputLabel} >Parameter</Field>
+              <Select
+                name='searchParam'
+                id="searchParam"
+                // value={age}
+                // onChange={handleChange}
+              >
+              <MenuItem value={1}>Name</MenuItem>
+              <MenuItem value={2}>Status</MenuItem>
+              <MenuItem value={3}>species</MenuItem>
+              <MenuItem value={4}>type</MenuItem>
+              <MenuItem value={5}>gender</MenuItem>
+            </Select>
+          </FormControl> */}
        </Form>
      )}
      </Formik>

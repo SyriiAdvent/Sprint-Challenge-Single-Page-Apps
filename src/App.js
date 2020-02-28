@@ -10,9 +10,8 @@ export default function App() {
   return (
     <main>
       <Header />
-      {/* <SearchForm /> */}
-      <NavLink to='/'>Home</NavLink>
-      <NavLink to='/characters'>Characters</NavLink>
+      {/* <NavLink to='/'>Home</NavLink>
+      <NavLink to='/characters'>Characters</NavLink> */}
       <Route exact path='/' >
         <WelcomePage />
       </Route>

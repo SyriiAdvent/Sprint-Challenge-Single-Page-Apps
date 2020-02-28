@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from "react";
 import SearchForm from './SearchForm'
 import axios from 'axios'
-import Button from '@material-ui/core/Button';
 import CharacterCard from './CharacterCard'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 export default function CharacterList() {
+  const classes = useStyles();
   const searchValue = ['?name=', '?page=']
   const [data, setData] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
@@ -42,12 +52,11 @@ export default function CharacterList() {
   return (
     <section className="character-list">
       <SearchForm query={searchHandler} />
-      <Button variant="contained" onClick={''} >Default</Button>
-      <button onClick={() => setSearchQuery('rick')} >force search</button>
-      <button onClick={() => console.log(searchQuery)} >Querylog</button>
-      <button onClick={() => console.log(data)} >datalog</button>
-      <button onClick={() => setPage(page - 1)} >previous page</button>
-      <button onClick={() => setPage(page + 1)} >Next Page</button>
+      <div className={classes.root}>
+        {page < 1 ?  <Button onClick={() => setPage(page - 1)} >previous page</Button> : null }
+        {page > 1 ?  <Button onClick={() => setPage(page - 1)} >previous page</Button> : null }
+        <Button onClick={() => setPage(page + 1)} >Next Page</Button>
+      </div>
       {data.map( ele => <CharacterCard data={ele} /> )}
     </section>
   );
