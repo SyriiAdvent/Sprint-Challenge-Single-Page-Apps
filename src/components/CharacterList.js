@@ -7,10 +7,32 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     '& > *': {
       margin: theme.spacing(1),
     },
   },
+  btns: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexGrow: 1,
+    // flexWrap: 'wrap',
+  },
+  search: {
+    width: '100%'
+  },
+  cardContainer: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 }));
 
 export default function CharacterList() {
@@ -50,14 +72,16 @@ export default function CharacterList() {
   // console.log(data)
 
   return (
-    <section className="character-list">
-      <SearchForm query={searchHandler} />
-      <div className={classes.root}>
-        {page < 1 ?  <Button onClick={() => setPage(page - 1)} >previous page</Button> : null }
-        {page > 1 ?  <Button onClick={() => setPage(page - 1)} >previous page</Button> : null }
-        <Button onClick={() => setPage(page + 1)} >Next Page</Button>
+    <section className={classes.root}>
+      <SearchForm query={searchHandler} className={classes.search} />
+        <div className={classes.btns}>
+          {page < 1 ?  <Button onClick={() => setPage(page - 1)} >previous page</Button> : null }
+          {page > 1 ?  <Button onClick={() => setPage(page - 1)} >previous page</Button> : null }
+          <Button style={{  }} onClick={() => setPage(page + 1)} >Next Page</Button>
+        </div>
+      <div className={classes.cardContainer}>
+        {data.map( ele => <CharacterCard data={ele} className={classes.cards} /> )}
       </div>
-      {data.map( ele => <CharacterCard data={ele} /> )}
     </section>
   );
 }

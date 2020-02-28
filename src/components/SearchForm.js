@@ -60,6 +60,7 @@ const SearchForm = (props) => {
          label='Search Name'
          as={TextField}
          />
+         {props.children}
           {/* <FormControl className={classes.formControl}>
             <Field as={InputLabel} >Parameter</Field>
               <Select

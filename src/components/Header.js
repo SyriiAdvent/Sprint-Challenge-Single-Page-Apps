@@ -9,8 +9,10 @@ export default function Header() {
   return (
     <header className="ui centered">
       <h1 className="ui center">Rick &amp; Morty Fan Page</h1>
-      <NavLink to='/' component={Link}>Home</NavLink>
-      <NavLink to='/characters' component={Link}>Characters</NavLink>
+      <div style={{ textAlign: 'center' }}>
+        <NavLink to='/' component={Link} style={{ marginRight: '2rem' }}>Home</NavLink>
+        <NavLink to='/characters' component={Link}>Characters</NavLink>
+      </div>
     </header>
   );
 }

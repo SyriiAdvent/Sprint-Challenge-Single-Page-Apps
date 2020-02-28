@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     marginBottom: 20,
-    maxWidth: 345,
+    maxWidth: 300,
     textAlign: "center",
   },
   media: {
@@ -22,10 +22,9 @@ const useStyles = makeStyles({
 export default function CharacterCard(props) {
   const classes = useStyles();
   const { id, name, image } = props.data;
-  
+
   return (
     <Card key={id} className={classes.root}>
-      <CardActionArea>
         <CardMedia
           className={classes.media}
           image={image}
@@ -39,7 +38,6 @@ export default function CharacterCard(props) {
             
           </Typography>
         </CardContent>
-      </CardActionArea>
       {/* <CardActions>
         <Button size="small" color="primary">
           Share
