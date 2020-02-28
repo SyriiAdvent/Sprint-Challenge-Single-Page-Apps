@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SearchForm from './SearchForm'
 import axios from 'axios'
-
+import Button from '@material-ui/core/Button';
 import CharacterCard from './CharacterCard'
 
 export default function CharacterList() {
@@ -18,28 +18,34 @@ export default function CharacterList() {
     if(searchQuery.length < 1) {
       axios(`https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/${searchValue[1]}${page}`)
         .then(response => {
-          console.log(response)
+          console.log(`Main fetch`, response)
           setData(response.data.results)
         })
         .catch(error => console.error(`Couldn't retrieve data `, error))
-    } else if(searchQuery.length > 0) {
-        axios(`https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/${searchValue[0]}${searchQuery}`)
-          .then(response => {
-            console.log(response)
-            setData(response.data.results)
-          })
-          .catch(error => console.error(`Couldn't retrieve data `, error))
     }
-      }, [searchQuery]);
+  }, [page]);
+
+  useEffect(() => {
+    if(searchQuery.length > 1) {
+      axios(`https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/${searchValue[0]}${searchQuery}`)
+        .then(response => {
+            console.log(`Search Fetch `, response)
+            setData(response.data.results);
+        })
+        .catch(error => console.error(`Couldn't retrieve data `, error))
+    }
+  }, [searchQuery]);
   
 
-  console.log(data)
+  // console.log(data)
 
   return (
     <section className="character-list">
       <SearchForm query={searchHandler} />
-      <button onClick={() => setSearchQuery(searchQuery)} >force search</button>
+      <Button variant="contained" onClick={''} >Default</Button>
+      <button onClick={() => setSearchQuery('rick')} >force search</button>
       <button onClick={() => console.log(searchQuery)} >Querylog</button>
+      <button onClick={() => console.log(data)} >datalog</button>
       <button onClick={() => setPage(page - 1)} >previous page</button>
       <button onClick={() => setPage(page + 1)} >Next Page</button>
       {data.map( ele => <CharacterCard data={ele} /> )}
@@ -50,12 +56,18 @@ export default function CharacterList() {
 
 // useEffect(() => {
 //   if(searchQuery.length < 1) {
-    
+//     axios(`https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/${searchValue[1]}${page}`)
+//       .then(response => {
+//         console.log(response)
+//         setData(response.data.results)
+//       })
+//       .catch(error => console.error(`Couldn't retrieve data `, error))
+//   } else if(searchQuery.length > 0) {
+//       axios(`https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/${searchValue[0]}${searchQuery}`)
+//         .then(response => {
+//           console.log(response)
+//           setData(response.data.results)
+//         })
+//         .catch(error => console.error(`Couldn't retrieve data `, error))
 //   }
-// axios(`https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/${searchValue}${searchQuery}`)
-//   .then(response => {
-//     console.log(response)
-//     setData(response.data.results)
-//   })
-//   .catch(error => console.error(`Couldn't retrieve data `, error))
-// }, [searchQuery]);
+//     }, [searchQuery]);

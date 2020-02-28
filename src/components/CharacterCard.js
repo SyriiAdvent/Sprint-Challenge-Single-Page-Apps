@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 export default function CharacterCard(props) {
   const classes = useStyles();
   const { id, name, image } = props.data;
-
+  
   return (
     <Card key={id} className={classes.root}>
       <CardActionArea>

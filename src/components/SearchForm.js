@@ -42,13 +42,13 @@ const SearchForm = (props) => {
           setSubmitting(true)
           // ^ Makes the Async Call for Data
           setSearch(data)
-          method(data)
+          method(data.search)
 
           setSubmitting(false)
           resetForm()
         }}
       >
-     {({ values, isSubmitting, onChange}) => (
+     {({ values }) => (
        <Form>
          <Field
          name='search'
